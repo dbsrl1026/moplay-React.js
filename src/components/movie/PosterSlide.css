@@ -1,0 +1,27 @@
+.react-multiple-carousel__arrow--right {
+    right: calc(0% + 1px);
+}
+.react-multiple-carousel__arrow--left {
+    left: calc(0% + 1px);
+}
+
+.react-multiple-carousel__arrow {
+    position: absolute;
+    outline: 0;
+    transition: all .5s;
+    border-radius: 35px;
+    z-index: 1000;
+    border: 0;
+    background: rgb(5 158 243);
+    min-width: 50px;
+    min-height: 50px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.movie-item-slide {
+    position: relative;
+    margin-bottom: 25px;
+    margin-left: 20px;
+    margin-right: 30px;
+}

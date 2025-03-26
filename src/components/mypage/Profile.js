@@ -1,14 +1,39 @@
 import React from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-    return (    
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchValidation = async () => {
+            try {
+                const response = await axios.get("http://localhost:8089/react/validation", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`, // Replace with your token retrieval logic
+                    },
+                });
+                if (response.data !== "OK") {
+                    navigate("/login");
+                }
+            } catch (error) {
+                console.error("Validation failed:", error);
+                navigate("/login");
+            }
+        };
+
+        fetchValidation();
+    }, [navigate]);
+    return (
         <div className="profile-area py-100">
             <div className="container">
 
-	 {/*  <!-------------------------------------------------------------------------------------------------------------------------- -->			 */}
+                {/*  <!-------------------------------------------------------------------------------------------------------------------------- -->			 */}
                 <div className="profile-intro">
-	       
-                 {/*   <!------------------------------------------------------------ -->		 */}
+
+                    {/*   <!------------------------------------------------------------ -->		 */}
                     <div className="row">
                         <div className="col-lg-4 col-xl-4">
                             <div className="intro-left">
@@ -53,40 +78,40 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-	       {/* <!------------------------------------------------------------ -->			 */}
+                    {/* <!------------------------------------------------------------ -->			 */}
                     <div className="profile-menu">
                         <ul className="nav nav-underline" id="pills-profile-tab" role="tablist">
                             <li className="nav-item" role="presentation">
-                              <button className="nav-link active" id="pills-profile-tab1" data-bs-toggle="pill" data-bs-target="#pills-profile1" type="button" role="tab" aria-controls="pills-profile1" aria-selected="true">My Profile</button>
+                                <button className="nav-link active" id="pills-profile-tab1" data-bs-toggle="pill" data-bs-target="#pills-profile1" type="button" role="tab" aria-controls="pills-profile1" aria-selected="true">My Profile</button>
                             </li>
                             <li className="nav-item" role="presentation">
-                              <button className="nav-link" id="pills-profile-tab2" data-bs-toggle="pill" data-bs-target="#pills-profile2" type="button" role="tab" aria-controls="pills-profile2" aria-selected="false">My Wishlist</button>
+                                <button className="nav-link" id="pills-profile-tab2" data-bs-toggle="pill" data-bs-target="#pills-profile2" type="button" role="tab" aria-controls="pills-profile2" aria-selected="false">My Wishlist</button>
                             </li>
                             <li className="nav-item" role="presentation">
-                              <button className="nav-link" id="pills-profile-tab3" data-bs-toggle="pill" data-bs-target="#pills-profile3" type="button" role="tab" aria-controls="pills-profile3" aria-selected="false">Notification <span className="badge">02</span></button>
+                                <button className="nav-link" id="pills-profile-tab3" data-bs-toggle="pill" data-bs-target="#pills-profile3" type="button" role="tab" aria-controls="pills-profile3" aria-selected="false">Notification <span className="badge">02</span></button>
                             </li>
                             <li className="nav-item" role="presentation">
-                              <button className="nav-link" id="pills-profile-tab4" data-bs-toggle="pill" data-bs-target="#pills-profile4" type="button" role="tab" aria-controls="pills-profile4" aria-selected="false">Settings</button>
+                                <button className="nav-link" id="pills-profile-tab4" data-bs-toggle="pill" data-bs-target="#pills-profile4" type="button" role="tab" aria-controls="pills-profile4" aria-selected="false">Settings</button>
                             </li>
                             <li className="nav-item" role="presentation">
                                 <button className="nav-link" id="pills-profile-tab5" data-bs-toggle="pill" data-bs-target="#pills-profile5" type="button" role="tab" aria-controls="pills-profile5" aria-selected="false">Topup Balance</button>
                             </li>
                             <li className="nav-item ms-auto" role="presentation">
-                              <button className="nav-link" type="button"><i className="far fa-sign-out"></i>Sign Out</button>
+                                <button className="nav-link" type="button"><i className="far fa-sign-out"></i>Sign Out</button>
                             </li>
                         </ul>
                     </div>
-	      {/*  <!------------------------------------------------------------ --> */}
-		
+                    {/*  <!------------------------------------------------------------ --> */}
+
                 </div>
-               {/* <!-------------------------------------------------------------------------------------------------------------------------- -->		 */}
+                {/* <!-------------------------------------------------------------------------------------------------------------------------- -->		 */}
 
 
-	{/* <!-------------------------------------------------------------------------------------------------------------------------- -->	 */}
+                {/* <!-------------------------------------------------------------------------------------------------------------------------- -->	 */}
                 <div className="profile-menu-content">
-                    
 
-		<div className="tab-content" id="profile-pills-tabContent">
+
+                    <div className="tab-content" id="profile-pills-tabContent">
                         {/* <!-- tab 1 profile - ---------------------------------------------------------------------------------> */}
                         <div className="tab-pane fade show active" id="pills-profile1" role="tabpanel" aria-labelledby="pills-profile-tab1" tabindex="0">
                             <div className="row">
@@ -520,7 +545,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                           {/*  <!-- pagination --> */}
+                            {/*  <!-- pagination --> */}
                             <div className="pagination-area mt-40">
                                 <div aria-label="Page navigation example">
                                     <ul className="pagination">
@@ -541,7 +566,7 @@ const Profile = () => {
                                     </ul>
                                 </div>
                             </div>
-                           {/*  <!-- pagination end --> */}
+                            {/*  <!-- pagination end --> */}
                         </div>
 
                         {/* <!-- tab 4 settings : 회원정보 수정 -----------------------------------------------------------------------------------> */}
@@ -592,8 +617,8 @@ const Profile = () => {
                                                         <button className="theme-btn" type="submit"><span className="far fa-save"></span> Save Changes</button>
                                                     </div>
                                                 </div>
-                                            </form>    
-                                        </div>                                        
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
@@ -675,7 +700,7 @@ const Profile = () => {
                                                         <div className="form-check">
                                                             <input className="form-check-input" type="radio" name="method" id="method1" checked />
                                                             <label className="form-check-label" for="method1">
-                                                               Credit Card
+                                                                Credit Card
                                                             </label>
                                                         </div>
                                                         <div className="form-check">

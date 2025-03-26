@@ -17,6 +17,7 @@ import GenreApp   from "./GenreApp";
 
 import Login      from "../components/login/Login";
 import Register   from "../components/login/Register";
+import Profile from "../components/mypage/Profile";
 
  function App() {
 
@@ -35,6 +36,7 @@ import Register   from "../components/login/Register";
             <Route path="/detail/:prmMovieId"               element={<DetailApp/>}  /> 
             <Route path="/login"                            element={<Login/>}      /> 
             <Route path="/register"                         element={<Register/>}   /> 
+            <Route path="/mypage"                          element={<Profile />}      />
 
          </Routes>
 

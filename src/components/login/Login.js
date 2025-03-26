@@ -1,7 +1,21 @@
 import React from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    return (    
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get("token");
+
+        if (token) {
+            localStorage.setItem("token", token);
+            navigate("/mypage"); // Redirect to a desired page after login
+        }
+    }, [navigate]);
+    return (
         <div className="auth-area py-100">
             <div className="container">
                 <div className="col-md-5 col-lg-4 mx-auto">
@@ -12,8 +26,8 @@ const Login = () => {
                             <p>moplay 회원 로그인</p>
                         </div>
                         <div className="auth-form">
-                            
-                            
+
+
                             <form action="#">
                                 <div className="form-group">
                                     <label>이메일</label>
@@ -42,7 +56,7 @@ const Login = () => {
                                 <div className="auth-social">
                                     <span className="auth-divider">or</span>
                                     <div className="auth-social-list">
-                                        <a href="#!" className="auth-gl"><i className="fab fa-google"></i>Google</a>
+                                        <a href="http://localhost:8089/oauth2/authorization/google" className="auth-gl"><i className="fab fa-google"></i>Google</a>
                                         <a href="#!" className="auth-fb"><i className="fab fa-facebook-f"></i>Facebook</a>
                                         <a href="#!" className="auth-tw"><i className="fab fa-x-twitter"></i>Twitter</a>
                                     </div>
